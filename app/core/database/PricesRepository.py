@@ -1,17 +1,17 @@
 from abc import ABC, abstractmethod
-from typing import List
 from app.core.database.schemas.PricesSchemas import HistoricalPrice
+from typing import List
 
 class PricesRepository(ABC):
 
   @abstractmethod
-  def addPrice(self, price: HistoricalPrice) -> HistoricalPrice:
+  def getPrices(self) -> List[HistoricalPrice]:
     pass
 
   @abstractmethod
-  def getPricesByCoin(self, coin: str) -> List[HistoricalPrice]:
+  def getPricesByCoinName(self, coinName: str) -> List[HistoricalPrice] |None:
     pass
 
   @abstractmethod
-  def clear(self) -> None:
+  def getPriceById(self, id: str) -> HistoricalPrice | None:
     pass

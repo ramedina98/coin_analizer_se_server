@@ -1,0 +1,170 @@
+[
+  {
+    "coinName": "Bitcoin",
+    "date": "2025-07-20T00:00:00",
+    "price": 64640.0,
+    "volume": 17000000000
+  },
+  {
+    "coinName": "Ethereum",
+    "date": "2025-07-20T00:00:00",
+    "price": 3737.0,
+    "volume": 18000000000
+  },
+  {
+    "coinName": "Cardano",
+    "date": "2025-07-20T00:00:00",
+    "price": 0.45,
+    "volume": 17000000000
+  },
+  {
+    "coinName": "Solana",
+    "date": "2025-07-20T00:00:00",
+    "price": 141.4,
+    "volume": 16000000000
+  },
+  {
+    "coinName": "Bitcoin",
+    "date": "2025-07-21T00:00:00",
+    "price": 63360.0,
+    "volume": 18000000000
+  },
+  {
+    "coinName": "Ethereum",
+    "date": "2025-07-21T00:00:00",
+    "price": 3663.0,
+    "volume": 19000000000
+  },
+  {
+    "coinName": "Cardano",
+    "date": "2025-07-21T00:00:00",
+    "price": 0.45,
+    "volume": 18000000000
+  },
+  {
+    "coinName": "Solana",
+    "date": "2025-07-21T00:00:00",
+    "price": 138.6,
+    "volume": 17000000000
+  },
+  {
+    "coinName": "Bitcoin",
+    "date": "2025-07-22T00:00:00",
+    "price": 64640.0,
+    "volume": 19000000000
+  },
+  {
+    "coinName": "Ethereum",
+    "date": "2025-07-22T00:00:00",
+    "price": 3737.0,
+    "volume": 20000000000
+  },
+  {
+    "coinName": "Cardano",
+    "date": "2025-07-22T00:00:00",
+    "price": 0.45,
+    "volume": 19000000000
+  },
+  {
+    "coinName": "Solana",
+    "date": "2025-07-22T00:00:00",
+    "price": 141.4,
+    "volume": 18000000000
+  },
+  {
+    "coinName": "Bitcoin",
+    "date": "2025-07-23T00:00:00",
+    "price": 63360.0,
+    "volume": 20000000000
+  },
+  {
+    "coinName": "Ethereum",
+    "date": "2025-07-23T00:00:00",
+    "price": 3663.0,
+    "volume": 21000000000
+  },
+  {
+    "coinName": "Cardano",
+    "date": "2025-07-23T00:00:00",
+    "price": 0.45,
+    "volume": 20000000000
+  },
+  {
+    "coinName": "Solana",
+    "date": "2025-07-23T00:00:00",
+    "price": 138.6,
+    "volume": 19000000000
+  },
+  {
+    "coinName": "Bitcoin",
+    "date": "2025-07-24T00:00:00",
+    "price": 64640.0,
+    "volume": 21000000000
+  },
+  {
+    "coinName": "Ethereum",
+    "date": "2025-07-24T00:00:00",
+    "price": 3737.0,
+    "volume": 22000000000
+  },
+  {
+    "coinName": "Cardano",
+    "date": "2025-07-24T00:00:00",
+    "price": 0.45,
+    "volume": 21000000000
+  },
+  {
+    "coinName": "Solana",
+    "date": "2025-07-24T00:00:00",
+    "price": 141.4,
+    "volume": 20000000000
+  },
+  {
+    "coinName": "Bitcoin",
+    "date": "2025-07-25T00:00:00",
+    "price": 63360.0,
+    "volume": 22000000000
+  },
+  {
+    "coinName": "Ethereum",
+    "date": "2025-07-25T00:00:00",
+    "price": 3663.0,
+    "volume": 23000000000
+  },
+  {
+    "coinName": "Cardano",
+    "date": "2025-07-25T00:00:00",
+    "price": 0.45,
+    "volume": 22000000000
+  },
+  {
+    "coinName": "Solana",
+    "date": "2025-07-25T00:00:00",
+    "price": 138.6,
+    "volume": 21000000000
+  },
+  {
+    "coinName": "Bitcoin",
+    "date": "2025-07-26T00:00:00",
+    "price": 64640.0,
+    "volume": 23000000000
+  },
+  {
+    "coinName": "Ethereum",
+    "date": "2025-07-26T00:00:00",
+    "price": 3737.0,
+    "volume": 24000000000
+  },
+  {
+    "coinName": "Cardano",
+    "date": "2025-07-26T00:00:00",
+    "price": 0.45,
+    "volume": 23000000000
+  },
+  {
+    "coinName": "Solana",
+    "date": "2025-07-26T00:00:00",
+    "price": 141.4,
+    "volume": 22000000000
+  }
+]
