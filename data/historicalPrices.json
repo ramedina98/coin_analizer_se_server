@@ -145,25 +145,21 @@
   },
   {
     "coinName": "Bitcoin",
-    "date": "2025-07-26T00:00:00",
     "price": 64640.0,
     "volume": 23000000000
   },
   {
     "coinName": "Ethereum",
-    "date": "2025-07-26T00:00:00",
     "price": 3737.0,
     "volume": 24000000000
   },
   {
     "coinName": "Cardano",
-    "date": "2025-07-26T00:00:00",
     "price": 0.45,
     "volume": 23000000000
   },
   {
     "coinName": "Solana",
-    "date": "2025-07-26T00:00:00",
     "price": 141.4,
     "volume": 22000000000
   }

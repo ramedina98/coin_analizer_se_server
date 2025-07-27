@@ -1,16 +1,26 @@
-from fastapi import FastAPI, HTTPException, Query
-from typing import Optional, List
+import threading
+
+from fastapi import FastAPI
 from app.api import prices
 from app.database.memory.MemoryPricesRepository import MemoryPricesRepository
-from app.utils.HTTPCoinsData import HTTPCoinsData
+from app.core.PricesSimulator import PricesSimulator
+
+repo = MemoryPricesRepository()
+
+simulator = PricesSimulator(repo)
 
 app = FastAPI(title='Crypto Expert System API')
 
+prices.set_repository(repo)
+
 app.include_router(prices.router)
 
-repo = MemoryPricesRepository()
-coins_client = HTTPCoinsData("https://api.coinpaprika.com/v1/")
-coins = ["btc-bitcoin", "eth-ethereum", "ltc-litecoin"]
+
+def run_simulator():
+  simulator.simulatePriceChanges()
+
+simulator_thread = threading.Thread(target=run_simulator, daemon=True)
+simulator_thread.start()
 
 @app.get('/')
 def root():
