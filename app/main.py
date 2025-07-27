@@ -1,4 +1,4 @@
-import threading
+import asyncio
 
 from fastapi import FastAPI
 from app.api import prices
@@ -15,12 +15,9 @@ prices.set_repository(repo)
 
 app.include_router(prices.router)
 
-
-def run_simulator():
-  simulator.simulatePriceChanges()
-
-simulator_thread = threading.Thread(target=run_simulator, daemon=True)
-simulator_thread.start()
+@app.on_event('startup')
+async def startUp():
+  asyncio.create_task(simulator.simulatePriceChanges())
 
 @app.get('/')
 def root():
