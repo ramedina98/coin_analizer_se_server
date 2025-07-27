@@ -3,21 +3,39 @@ import os
 import uuid
 
 from typing import List
+from datetime import datetime
 from app.core.database.PricesRepository import PricesRepository
-from app.core.database.schemas.PricesSchemas import HistoricalPrice
+from app.core.database.schemas.PricesSchemas import HistoricalPrice, HistoricalPriceCreate
 
 BASE_DIR = os.path.dirname(__file__)
+FILE_PATH = os.path.abspath(os.path.join(BASE_DIR, '../../../data/historicalPrices.json'))
 
 class MemoryPricesRepository(PricesRepository):
   filePath: str
 
   def __init__(self):
-    self.filePath = os.path.abspath(os.path.join(BASE_DIR, '../../../data/historicalPrices.json'))
+    self.filePath = FILE_PATH
     self._prices: List[HistoricalPrice] = []
 
     self.__readJSONFile()
 
+  def addPrices(self, prices: List[HistoricalPriceCreate]) -> List[HistoricalPrice] | None:
+    newPrices = [
+      HistoricalPrice(
+        id=str(uuid.uuid4()),
+        coinName=price.coinName,
+        date=price.date,
+        price=price.price,
+        volume=price.volume
+      )
+      for price in prices
+    ]
+
+    self._prices.extend(newPrices)
+    return newPrices
+
   def getPrices(self) -> List[HistoricalPrice]:
+    print(len(self._prices))
     return self._prices
 
   def getPricesByCoinName(self, coinName: str) -> List[HistoricalPrice] | None:
@@ -42,7 +60,7 @@ class MemoryPricesRepository(PricesRepository):
       self._prices.append(HistoricalPrice(
         id=str(uuid.uuid4()),
         coinName=item['coinName'],
-        date=item['date'],
+        date=datetime.now(),
         price=item['price'],
         volume=item['volume']
       ))

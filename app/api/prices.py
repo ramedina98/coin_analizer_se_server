@@ -4,7 +4,12 @@ from fastapi import APIRouter, HTTPException
 from typing import List
 
 router = APIRouter(prefix='/api/se/prices', tags=['prices'])
-repo = MemoryPricesRepository()
+
+repo: MemoryPricesRepository = None
+
+def set_repository(r: MemoryPricesRepository):
+  global repo
+  repo = r
 
 @router.get('/', response_model=List[HistoricalPrice])
 def getPrices():
