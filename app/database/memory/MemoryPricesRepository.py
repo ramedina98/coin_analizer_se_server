@@ -35,7 +35,6 @@ class MemoryPricesRepository(PricesRepository):
     return newPrices
 
   def getPrices(self) -> List[HistoricalPrice]:
-    print(len(self._prices))
     return self._prices
 
   def getPricesByCoinName(self, coinName: str) -> List[HistoricalPrice] | None:

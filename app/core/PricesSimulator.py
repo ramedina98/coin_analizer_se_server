@@ -1,7 +1,9 @@
+import asyncio
 import time
 import random
 
 from datetime import datetime
+from app.api.prices import broadcastPriceUpdate
 from app.core.database.PricesRepository import PricesRepository
 from app.core.database.schemas.PricesSchemas import HistoricalPriceCreate
 
@@ -11,7 +13,7 @@ class PricesSimulator:
   def __init__(self, repo: PricesRepository):
     self.priceRepository = repo
 
-  def simulatePriceChanges(self):
+  async def simulatePriceChanges(self):
     while True:
       currentPrices = self.priceRepository.getPrices()
 
@@ -25,13 +27,15 @@ class PricesSimulator:
         newPrice = round(price.price * (1 + changePercent / 100), 4)
         newVolume = int(price.volume * (1 + volumeChange))
 
-        self.priceRepository.addPrices([
-          HistoricalPriceCreate(
-            coinName=price.coinName,
-            date=datetime.now(),
-            price=newPrice,
-            volume=newVolume
-          )
-        ])
+        newEntry = HistoricalPriceCreate(
+          coinName=price.coinName,
+          date=datetime.now(),
+          price=newPrice,
+          volume=newVolume
+        )
 
-      time.sleep(5)
+        self.priceRepository.addPrices([newEntry])
+
+        await broadcastPriceUpdate(newEntry)
+
+      await asyncio.sleep(5)
