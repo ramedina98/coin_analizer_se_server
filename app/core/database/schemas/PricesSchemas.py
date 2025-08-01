@@ -1,10 +1,8 @@
-from typing import Optional
 from pydantic import BaseModel
-from datetime import datetime
 
 class HistoricalPriceBase(BaseModel):
   coinName: str
-  date: datetime
+  date: str
   price: float
   volume: float
 
