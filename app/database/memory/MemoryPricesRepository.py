@@ -59,7 +59,7 @@ class MemoryPricesRepository(PricesRepository):
       self._prices.append(HistoricalPrice(
         id=str(uuid.uuid4()),
         coinName=item['coinName'],
-        date=datetime.now(),
+        date=datetime.now().isoformat(),
         price=item['price'],
         volume=item['volume']
       ))

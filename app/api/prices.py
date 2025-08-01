@@ -1,16 +1,20 @@
+import asyncio
+import json
+
 from app.core.database.schemas.PricesSchemas import HistoricalPrice
 from app.database.memory.MemoryPricesRepository import MemoryPricesRepository
-from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect, WebSocketException
+from fastapi import APIRouter, HTTPException, WebSocket, WebSocketDisconnect
 from typing import List
 
 router = APIRouter(prefix='/api/se/prices', tags=['prices'])
 
 activeConnections: List[WebSocket] = []
+connectionLock = asyncio.Lock()
 
 repo: MemoryPricesRepository = None
 
 def set_repository(memoryRepository: MemoryPricesRepository):
-  global repo
+  global repo, projectorReporter
   repo = memoryRepository
 
 @router.get('/', response_model=List[HistoricalPrice])
@@ -45,10 +49,27 @@ async def websocketPrices(websocket: WebSocket):
     while True:
       await websocket.receive_text()
   except WebSocketDisconnect:
-    activeConnections.remove(websocket)
+    async with connectionLock:
+      if websocket in activeConnections:
+        activeConnections.remove(websocket)
 
-async def broadcastPriceUpdate(message: HistoricalPrice):
-  jsonData = message.json()
+async def broadcastPriceUpdate(prices: List[HistoricalPrice]):
+  message = {
+    "type": "update",
+    "data": {
+      "prices": [price for price in prices]
+    }
+  }
+  jsonData = json.dumps(message)
 
-  for connection in activeConnections:
-    await connection.send_tex(jsonData)
+  async with connectionLock:
+    disconned = []
+
+    for connection in activeConnections:
+      try:
+        await connection.send_text(jsonData)
+      except Exception:
+        disconned.append(connection)
+
+    for conn in disconned:
+      activeConnections.remove(conn)

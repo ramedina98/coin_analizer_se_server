@@ -18,7 +18,10 @@ class PricesSimulator:
       currentPrices = self.priceRepository.getPrices()
 
       today = datetime.now().date()
-      todayPrices = [p for p in currentPrices if p.date.date() == today]
+      todayPrices = [
+        p for p in currentPrices
+        if datetime.fromisoformat(p.date).date() == today
+      ]
 
       for price in todayPrices:
         changePercent = random.uniform(-0.5, 0.5)
@@ -29,7 +32,7 @@ class PricesSimulator:
 
         newEntry = HistoricalPriceCreate(
           coinName=price.coinName,
-          date=datetime.now(),
+          date=datetime.now().isoformat(),
           price=newPrice,
           volume=newVolume
         )
